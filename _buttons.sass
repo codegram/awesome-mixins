@@ -1,7 +1,6 @@
 /* Import iconic
  *------------------------------------------------------------------------------
 @font-face
-
   font-family: 'IconicStroke'
   src: url('/font/iconic_stroke.eot')
   src: local("☺"), url('/font/iconic_stroke.ttf') format("truetype"), url('/font/iconic_stroke.svg#iconic') format("svg")
@@ -15,24 +14,24 @@
 body
   text-rendering: optimizeLegibility
 
-button
+@mixin button-base
   &:hover
     cursor: pointer
-  &:-moz-focus-inner
+  &::-moz-focus-inner
     border: 0
 
 /* minimal
  *******************************************************************************
-@mixin button-minimal
-  background: #e3e3e3
-  border: 1px solid #ccc
+@mixin button-minimal($background: #e3e3e3, $color: $background - #b0b0b0, $hover-background: $background - #0A0A0A, $active-background: $hover-background - #090909, $border-color: $color + #999999 )
+  background: $background
+  border: 1px solid $border-color
   -moz-border-radius: 3px
   -webkit-border-radius: 3px
   border-radius: 3px
   -moz-box-shadow: inset 0 0 1px 1px #f6f6f6
   -webkit-box-shadow: inset 0 0 1px 1px #f6f6f6
   box-shadow: inset 0 0 1px 1px #f6f6f6
-  color: #333
+  color: $color
   font-family: "helvetica neue", helvetica, arial, sans-serif
   font-size: 12px
   font-weight: bold
@@ -41,18 +40,18 @@ button
   text-align: center
   text-shadow: 0 1px 0px #fff
   &:hover
-    background: #d9d9d9
+    background: $hover-background
     -moz-box-shadow: inset 0 0 1px 1px #eaeaea
     -webkit-box-shadow: inset 0 0 1px 1px #eaeaea
     box-shadow: inset 0 0 1px 1px #eaeaea
-    color: #222
+    color: $color - #111
     cursor: pointer
   &:active
-    background: #d0d0d0
+    background: $active-background
     -moz-box-shadow: inset 0 0 1px 1px #e3e3e3
     -webkit-box-shadow: inset 0 0 1px 1px #e3e3e3
     box-shadow: inset 0 0 1px 1px #e3e3e3
-    color: #000
+    color: $color - #333
 
 /* clean gray
  *******************************************************************************
@@ -252,6 +251,7 @@ button
 /* thoughtbot (inspired by thoughtbot.com)
  *******************************************************************************
 @mixin button-thoughtbot
+  +button-base
   background: #c63929
   background: -moz-linear-gradient(0% 100% 90deg, #891100 0%, #b51700 50%, #c63929 50%, #ee432e 100%)
   background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #ee432e), color-stop(0.5, #c63929), color-stop(0.5, #b51700), color-stop(1, #891100))
@@ -268,10 +268,9 @@ button
   font-weight: bold
   letter-spacing: 1px
   line-height: 1
-  padding: 12px 0 14px 0
+  padding: 12px 16px 14px 16px
   text-align: center
   text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.8)
-  width: 150px
   &:hover
     background: #cb0500
     background: -moz-linear-gradient(0% 100% 90deg, #a20601 0%, #cb0500 50%, #db504d 50%, #f37873 100%)
