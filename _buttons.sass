@@ -1,0 +1,31 @@
+
+@mixin button($button-color: $main-color, $button-light-color: $button-color, $button-dark-color: $button-color - #333, $button-hover-light-color: $button-light-color + #111, $button-hover-dark-color: $button-dark-color + #222, $button-active-light-color: $button-hover-light-color - #333, $button-active-dark-color: $button-hover-dark-color - #444)
+
+  background: $button-light-color
+  background: -moz-linear-gradient(0% 100% 90deg, $button-light-color 0%, $button-light-color 50%, $button-dark-color 50%, $button-dark-color 100%)
+  background: -webkit-gradient(linear, 0% 50%, 0% 51%, from($button-light-color), to($button-dark-color))
+  border: 0
+  -moz-border-radius: 6px
+  -webkit-border-radius: 6px
+  border-radius: 6px
+  color: #fcfcfc
+  font-family: "helvetica neue", helvetica, arial, sans-serif
+  font-size: 16px
+  font-weight: bold
+  line-height: 1
+  padding: 10px 10px 12px 10px
+  text-align: center
+  text-shadow: 0px -1px 1px rgba(104, 45, 64, .7)
+  +inline-block
+  &:hover
+    background: $button-hover-light-color
+    background: -moz-linear-gradient(0% 100% 90deg, $button-hover-light-color 0%, $button-hover-light-color 50%, $button-hover-dark-color 50%, $button-hover-dark-color 100%)
+    background: -webkit-gradient(linear, 0% 50%, 0% 51%, from($button-hover-light-color), to($button-hover-dark-color))
+    cursor: pointer
+  &:active
+    background: $button-active-light-color
+    background: -moz-linear-gradient(0% 100% 90deg, $button-active-light-color 0%, $button-active-light-color 50%, $button-active-dark-color 50%, $button-active-dark-color 100%)
+    background: -webkit-gradient(linear, 0% 50%, 0% 51%, from($button-active-light-color), to($button-active-dark-color))
+
+a.button
+  +button
